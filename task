@@ -1,0 +1,11 @@
+#!/bin/bash 
+
+if [ -z "$1" ];
+then 
+	tasks=$(cat ~/repos/TODO/15Jan.md);
+	echo $tasks;
+elif [ "$2" == "add" ];
+then 
+	read -p "TITLE: " title; 
+fi
+
