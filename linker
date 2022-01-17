@@ -1,12 +1,25 @@
 #!/bin/sh 
 
-if [[ "$1" == "add" ]]; 
+if [[ -z "$1" ]]; 
+then 
+		vim -R ~/repos/links/README.md
+
+elif [[ "$1" == "add" ]]; 
 then 
 	read -p "Title: " title; 
 	read -p "Link: " link; 
 	baseurl="https://"
 	echo "[$title]($baseurl$link)" >> ~/repos/links/README.md;
-	git add ~/repos/links/. && git commit -m "Added $title" && git push"
+	cd ~/repos/links && git add ~/repos/links/. && git commit -m "Added $title" && git push && cd - &
+
+# FIXME: Vim doesn't open from script properly for editing ...
+# elif [[ "$1" == "-e" ]]; 
+# then 
+# 	cd ~/repos/links && sh vim ~/repos/links/README.md && git commit && git push && cd - &
+
+else
+	echo "Error [E]: Something went wrong ..."; 
 fi
+
 
 
