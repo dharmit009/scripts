@@ -1,7 +1,7 @@
 #!/bin/bash 
 
 open(){
-	xdg-open $url >/dev/null </dev/null >/dev/null 2>&1 & disown
+	xdg-open "$url" >/dev/null </dev/null >/dev/null 2>&1 & disown
 }
 
 # declaring a associative array ...
@@ -22,7 +22,7 @@ extend_url="?authuser=0&hs=179";
 # If no sys arguments then ask for meet code ...
 if [ -z "$1" ]; 
 then 
-	read -p "Enter Meeting Code: " code; 
+	read -rp "Enter Meeting Code: " code; 
 	url=$base_url$code$extend_url;
 
 # If sys argument == python then go to classroom one exception ...
@@ -37,7 +37,7 @@ then
 	url=$base_url$code$extend_url;
 
 else
-	$url=$base_url;
+	url=$base_url;
 fi 
 
 # Open the url ...
