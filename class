@@ -30,7 +30,11 @@ elif [ "$1" == "python" ];
 then 
 	url="https://classroom.google.com/u/0/c/MzY0NjA0NzUyMzgx"
 	
-# If any arg one present in classNames array then look for it's value which is a code and open it up ...
+elif [ "$1" == "rwxrob" ];
+then 
+	url="https://www.twitch.tv/rwxrob"
+	
+# If any arg one present in classNames array then look for it's value 
 elif [ ${classNames[$1]}+_ ]; 
 then 
 	code=${classNames["$1"]}; 
