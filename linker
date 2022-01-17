@@ -1,0 +1,12 @@
+#!/bin/sh 
+
+if [[ "$1" == "add" ]]; 
+then 
+	read -p "Title: " title; 
+	read -p "Link: " link; 
+	baseurl="https://"
+	echo "[$title]($baseurl$link)" >> ~/repos/links/README.md;
+	git add ~/repos/links/. && git commit -m "Added $title"
+fi
+
+
