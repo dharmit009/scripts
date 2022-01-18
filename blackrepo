@@ -1,35 +1,43 @@
-#!/bin/bash 
+#!/bin/sh
+
+set -e 
+# set -x
 
 cleanup(){
 	if [ -e "downloads.html" ] || [ -e "strap.sh" ];
 	then 
-		rm downloads.html strap.sh -rf;
+		rm ~/repos/scripts/downloads.html -rf;
+		rm ~/repos/scripts/strap.sh -rf;
 	fi 
+}
+
+download(){
+	wget --https-only https://blackarch.org/strap.sh --quiet -O ~/repos/scripts/strap.sh 
+	wget --https-only https://blackarch.org/downloads.html --quiet -O ~/repos/scripts/downloads.html
 }
 
 
 cleanup
-
-wget --https-only https://blackarch.org/strap.sh --quiet 
-wget --https-only https://blackarch.org/downloads.html --quiet 
-
+download
 
 if [ -e "downloads.html" ] 
 then 
-	chmod +rwx downloads.html
-	extracted_cmd=$( cat downloads.html | grep "echo" | grep sha1sum | cut -d ">" -f "1" --complement | cut -d "<" -f "1" );
-	echo $extracted_cmd;
-	okay_or_not=$( eval $extracted_cmd | cut -d ' ' -f '1' --complement );
-	echo $okay_or_not;
+
+	chmod +rw downloads.html
+  # I have used 2 greps to make sure I am capturing the one line 
+	# that I need. 
+	extracted_cmd=$( grep "echo" downloads.html | grep "sha1sum" | cut -d ">" -f "1" --complement | cut -d "<" -f "1" );
+	echo "$extracted_cmd";
+	okay_or_not=$( eval "$extracted_cmd" | cut -d ' ' -f '1' --complement );
+	echo "$okay_or_not";
+
 	if [ "$okay_or_not" = "OK" ] && [ -e "strap.sh" ] 
 	then 
 		chmod +x strap.sh 
 		eval sudo ./strap.sh 
 		echo "DONE"; 
 	fi 
+
 fi 
 
 cleanup
-
-
-
