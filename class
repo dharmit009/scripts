@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 
 open(){
 	xdg-open "$url" >/dev/null </dev/null >/dev/null 2>&1 & disown

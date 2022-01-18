@@ -1,5 +1,9 @@
 #!/bin/sh 
 
+commiter(){
+	cd ~/repos/links && git add ~/repos/links/. && git commit -m "Added $title" && git push && cd - &
+}
+
 if [[ -z "$1" ]]; 
 then 
 		vim -R ~/repos/links/README.md
@@ -8,9 +12,19 @@ elif [[ "$1" == "add" ]];
 then 
 	read -p "Title: " title; 
 	read -p "Link: " link; 
+	read -p "Description: " desc; 
 	baseurl="https://"
-	echo "[$title]($baseurl$link)" >> ~/repos/links/README.md;
-	cd ~/repos/links && git add ~/repos/links/. && git commit -m "Added $title" && git push && cd - &
+
+	if [ -z "$desc" ];
+	then 
+		echo "* [$title]($baseurl$link)" >> ~/repos/links/README.md;
+		commiter
+	elif [ -n "$desc" ];
+	then 
+		echo "* [$title]($baseurl$link): $desc" >> ~/repos/links/README.md;
+		commiter
+	fi 
+
 
 # FIXME: Vim doesn't open from script properly for editing ...
 # elif [[ "$1" == "-e" ]]; 
