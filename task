@@ -1,9 +1,11 @@
-#!/bin/bash 
+#!/bin/sh 
 
+set -e
+set -x 
 if [ -z "$1" ];
 then 
-	tasks=$(cat ~/repos/TODO/15Jan.md);
-	echo $tasks;
+	tasks="~/repos/TODO/15Jan2021.md";
+	vim -R $tasks;
 elif [ "$2" == "add" ];
 then 
 	read -p "TITLE: " title; 
