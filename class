@@ -6,7 +6,7 @@ open(){
 
 # declaring a associative array ...
 declare -A classNames; 
-classNames[dbms]="btj-eomu-vaq"; 
+classNames[dbms]="btjeomuvaq"; 
 classNames[java]="mvb-gqqp-pxj"; 
 classNames[cnet]="rpd-uprx-oyh"; 
 classNames[game]="hdp-dcty-ijz"; 
