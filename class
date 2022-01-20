@@ -34,6 +34,13 @@ elif [ "$1" == "rwxrob" ];
 then 
 	url="https://www.twitch.tv/rwxrob"
 	
+elif [ "$1" == "keybr" ];
+then 
+	url="https://www.keybr.com"
+	
+elif [ "$1" == "whatsapp" ];
+then 
+	url="https://web.whatsapp.com"
 # If any arg one present in classNames array then look for it's value 
 elif [ ${classNames[$1]}+_ ]; 
 then 

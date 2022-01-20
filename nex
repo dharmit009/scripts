@@ -1,0 +1,31 @@
+#!/bin/sh 
+
+# This command is used to create new scripts in my scripts repo
+# directly. The script will use $EDITOR command by default. 
+
+# First check if the new script name exist in your script directory or
+# not. If present then then echo out error else create a file and open
+# it up in vim. 
+
+echo "$SCRIPTS"
+
+nedit(){
+		touch "$1";
+		$EDITOR "$1"; 
+}
+
+if [ -e "$1" ]; 
+then 
+	echo "Error [E]: Command already exists!!"; 
+	nedit
+
+elif [ -z "$1" ]; 
+then 
+		read -rp "Enter New Script Name: "
+		nedit
+else
+		nedit
+fi 
+
+
+
