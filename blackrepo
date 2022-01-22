@@ -4,10 +4,15 @@ set -e
 # set -x
 
 cleanup(){
-	if [ -e "downloads.html" ] || [ -e "strap.sh" ];
+	if [[ -e downloads.html ]] || [[ -e strap.sh ]];
 	then 
+<<<<<<< HEAD
 		rm ~/repos/scripts/downloads.html -rf;
 		rm ~/repos/scripts/strap.sh -rf;
+=======
+		rm ~/repos/scripts/strap.sh;
+		rm ~/repos/scripts/downloads.html;
+>>>>>>> main
 	fi 
 }
 
@@ -18,10 +23,18 @@ download(){
 
 
 cleanup
+<<<<<<< HEAD
 download
+=======
 
-if [ -e "downloads.html" ] 
+wget --https-only https://blackarch.org/strap.sh --quiet -O ~/repos/scripts/strap.sh 
+wget --https-only https://blackarch.org/downloads.html --quiet -O ~/repos/scripts/downloads.html 
+
+>>>>>>> main
+
+if [[ -e downloads.html ]]
 then 
+<<<<<<< HEAD
 
 	chmod +rw downloads.html
   # I have used 2 greps to make sure I am capturing the one line 
@@ -32,6 +45,14 @@ then
 	echo "$okay_or_not";
 
 	if [ "$okay_or_not" = "OK" ] && [ -e "strap.sh" ] 
+=======
+	chmod +rwx downloads.html
+	extracted_cmd=$( cat downloads.html | grep "echo" | grep sha1sum | cut -d ">" -f "1" --complement | cut -d "<" -f "1" );
+	echo $extracted_cmd;
+	okay_or_not=$( eval $extracted_cmd | cut -d ' ' -f '1' --complement );
+	echo $okay_or_not;
+	if [[ $okay_or_not = "OK" ]]&& [[ -e strap.sh ]]
+>>>>>>> main
 	then 
 		chmod +x strap.sh 
 		eval sudo ./strap.sh 

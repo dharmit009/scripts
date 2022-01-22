@@ -6,7 +6,7 @@ open(){
 
 # declaring a associative array ...
 declare -A classNames; 
-classNames[dbms]="btj-eomu-vaq"; 
+classNames[dbms]="btjeomuvaq"; 
 classNames[java]="mvb-gqqp-pxj"; 
 classNames[cnet]="rpd-uprx-oyh"; 
 classNames[game]="hdp-dcty-ijz"; 
@@ -26,11 +26,25 @@ then
 	url=$base_url$code$extend_url;
 
 # If sys argument == python then go to classroom one exception ...
+elif [ "$1" == "git" ];
+then 
+	url="https://github.com/"
 elif [ "$1" == "python" ];
 then 
 	url="https://classroom.google.com/u/0/c/MzY0NjA0NzUyMzgx"
 	
-# If any arg one present in classNames array then look for it's value which is a code and open it up ...
+elif [ "$1" == "rwxrob" ];
+then 
+	url="https://www.twitch.tv/rwxrob"
+	
+elif [ "$1" == "keybr" ];
+then 
+	url="https://www.keybr.com"
+	
+elif [ "$1" == "whatsapp" ];
+then 
+	url="https://web.whatsapp.com"
+# If any arg one present in classNames array then look for it's value 
 elif [ ${classNames[$1]}+_ ]; 
 then 
 	code=${classNames["$1"]}; 
