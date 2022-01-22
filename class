@@ -26,6 +26,9 @@ then
 	url=$base_url$code$extend_url;
 
 # If sys argument == python then go to classroom one exception ...
+elif [ "$1" == "git" ];
+then 
+	url="https://github.com/"
 elif [ "$1" == "python" ];
 then 
 	url="https://classroom.google.com/u/0/c/MzY0NjA0NzUyMzgx"

@@ -1,1 +1,2 @@
-yes $@ | figlet | lolcat --animate
+yes $@ | figlet  | lolcat --animate 
+
