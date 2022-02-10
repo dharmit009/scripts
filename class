@@ -1,5 +1,4 @@
 #!/bin/bash 
-
 open(){
 	xdg-open $url >/dev/null </dev/null >/dev/null 2>&1 & disown
 }
@@ -37,6 +36,14 @@ elif [ "$1" == "rwxrob" ];
 then 
 	url="https://www.twitch.tv/rwxrob"
 	
+elif [ "$1" == "rwxzet" ];
+then 
+	url="https://www.github.com/rwxrob/zet"
+	
+elif [ "$1" == "rwxgit" ];
+then 
+	url="https://www.github.com/rwxrob"
+
 elif [ "$1" == "keybr" ];
 then 
 	url="https://www.keybr.com"
