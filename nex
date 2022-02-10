@@ -1,0 +1,36 @@
+#!/bin/sh 
+
+# User Settings ... 
+SCRIPT_REPO=~/repos/scripts/; 
+EDITOR='vim'
+
+checkifnotcreate(){
+	if [ -e "$fn" ]; 
+	then 
+		echo "The Script already exists !!";
+	else
+		touch "$fn"
+		echo "#!/bin/sh" >> "$fn"
+		chmod +x "$fn"
+		if [ -e "$fn" ]; 
+		then
+			"$EDITOR $fn" 
+		else
+			echo "$fn"
+		fi
+	fi 
+}
+
+if [ -z "$1" ]; 
+then 
+	read -r "Enter name for new Script file: " temp;
+	fn="$SCRIPT_REPO$temp";
+	checkifnotcreate
+elif [ -n "$1" ]; 
+then 
+	fn="$SCRIPT_REPO$1";
+	checkifnotcreate
+else
+	echo "Error [E]: Something went wrong !!"
+fi 
+
