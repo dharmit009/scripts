@@ -1,13 +1,11 @@
 #!/bin/sh 
 
 # User Settings ... 
-SCRIPT_REPO=~/repos/test/; 
-EDIT='vim'
+SCRIPT_REPO=~/repos/scripts/; 
 
 # Create Script if does not exist ...
 # And open within vim ...
 checkifnotcreate(){
-	cd "$SCRIPT_REPO" && git checkout dev
 	if [ -e "$fn" ]; 
 	then 
 		echo "The Script already exists !!";
@@ -15,9 +13,9 @@ checkifnotcreate(){
 		touch "$fn"
 		if [ -e "$fn" ]; 
 		then
-			echo "#!/bin/sh" >> "$fn"
 			chmod +x "$fn"
-			"$EDIT $fn" 
+			echo -e "#!/bin/sh\n\n" >> "$fn"
+			$EDITOR +3 $fn 
 		else
 			echo "$fn"
 		fi
@@ -27,11 +25,11 @@ checkifnotcreate(){
 if [ -z "$1" ]; 
 then 
 	read -r "Enter name for new Script file: " temp;
-	fn="$SCRIPT_REPO$temp";
+	fn=$SCRIPT_REPO$temp;
 	checkifnotcreate
 elif [ -n "$1" ]; 
 then 
-	fn="$SCRIPT_REPO$1";
+	fn=$SCRIPT_REPO$1;
 	checkifnotcreate
 else
 	echo "Error [E]: Something went wrong !!"
