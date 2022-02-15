@@ -1,0 +1,25 @@
+#!/bin/sh
+
+# $* --> Adds single space at the start then takes all the arguments ...
+# $@ --> Takes all the arguments ...
+
+message="$*"
+
+trap "setterm --cursor on; echo ${clear}; exit; trap -- -
+SIGINT SIGTERM" SIGTERM SIGINT
+
+if [ -z "${message}" ];
+then
+	read -p "Message: " message;
+fi 
+
+while true;
+do 
+	clear
+	# -c sets the text to center ...
+	# -f font file ... (only.flf you can find it on /usr/share/figlet/fonts)
+	figlet -f big.flf -c "$message" | lolcat  --animate
+	setterm --cursor off
+	sleep 2
+done
+

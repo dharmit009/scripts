@@ -1,36 +1,50 @@
 #!/bin/sh 
 
 # User Settings ... 
-SCRIPT_REPO=~/repos/scripts/; 
+PWD=~/repos/scripts/; 
 
 # Create Script if does not exist ...
-# And open within vim ...
+# And open within vim ... else open the script with dailog ...
 checkifnotcreate(){
+	# check if the script exist 
 	if [ -e "$fn" ]; 
 	then 
-		echo "The Script already exists !!";
+		echo "$fn script already exists !!";
+		read -p "Would you like to edit the script [y/n]: " ans; 
+		if [ "$ans" = 'y' ];
+		then 
+			$EDITOR $fn
+		else
+			echo "exit"; 
+		fi 
+	# If script does not exist then create a script ...
 	else
 		touch "$fn"
 		if [ -e "$fn" ]; 
 		then
+			# Give executive permissions to file 
+			# & enter #!/bin/bash
+			# also open it in vim on line 3.
 			chmod +x "$fn"
 			echo -e "#!/bin/sh\n\n" >> "$fn"
 			$EDITOR +3 $fn 
-		else
-			echo "$fn"
 		fi
 	fi 
 }
 
+# Check if arg 1 is empty or not ...
 if [ -z "$1" ]; 
 then 
+	# if empty then take input for script name ...
 	read -r "Enter name for new Script file: " temp;
-	fn=$SCRIPT_REPO$temp;
+	fn=$PWD$temp;
 	checkifnotcreate
 elif [ -n "$1" ]; 
 then 
-	fn=$SCRIPT_REPO$1;
+	# Else take the arg 1 and set it as script name ...
+	fn=$PWD$1;
 	checkifnotcreate
 else
+	# Else something went wrong !!
 	echo "Error [E]: Something went wrong !!"
 fi 
