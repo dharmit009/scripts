@@ -1,0 +1,9 @@
+#!/bin/sh
+
+echo "ssh "
+echo "smbclient -L \\\\ip\\ -W <workspaceName> -N<if no login>"
+echo "ftp <ip> -p <portNumber>"
+echo "telnet <ip> -p <portNumber>"
+echo 'Normal = "\0330]m"'
+echo 'Bold = "\0331]m"'
+

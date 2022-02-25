@@ -1,0 +1,10 @@
+#!/bin/sh
+
+ttfile=~/repos/TODO/timetable.md
+
+if [[ "$1" == "edit" ]];
+then 
+  vim $ttfile
+else
+  cat $ttfile | head -n 7
+fi

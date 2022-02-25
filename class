@@ -3,6 +3,7 @@ open(){
 	xdg-open $url >/dev/null </dev/null >/dev/null 2>&1 & disown
 }
 
+
 # declaring a associative array ...
 declare -A classNames; 
 classNames[dbms]="btjeomuvaq"; 
@@ -63,3 +64,4 @@ fi
 
 # Open the url ...
 open
+
