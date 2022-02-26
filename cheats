@@ -1,9 +1,44 @@
 #!/bin/sh
 
-echo "ssh "
-echo "smbclient -L \\\\ip\\ -W <workspaceName> -N<if no login>"
-echo "ftp <ip> -p <portNumber>"
-echo "telnet <ip> -p <portNumber>"
-echo 'Normal = "\0330]m"'
-echo 'Bold = "\0331]m"'
+ports(){
+  echo ""
+  echo "  ssh "
+  echo "  smbclient -L \\\\ip\\ -W <workspaceName> -N<if no login>"
+  echo "  ftp <ip> -p <portNumber>"
+  echo "  telnet <ip> -p <portNumber>"
+  echo ""
+}
+format(){
+  echo '  Normal = "\0330]m"'
+  echo '  Bold = "\0331]m"'
+  echo ""
+}
+args(){
+  echo '
+  `$0` -->  The command name or the 0th argument.  
+  `$1` --> First Argument after the command name.  
+  `$2` --> Second Argument after the command name. 
+  `$n` --> The N^th number of Argument after the command name.
+  `$@` --> Prints all the arguments starting from "`\$1`" to "`\$n`".
+  `$#` --> Returns the count of arguments. '
+  echo ""
+}
+all(){
+  format 
+  args
+  ports
+}
 
+if [[ "$1" = "ports" ]]
+then 
+  ports
+elif [[ "$1" = "format" ]]
+then 
+  format
+elif [[ "$1" = "args" ]]
+then 
+  args
+else [[ -z "$1" ]] 
+  all
+fi
+ 
