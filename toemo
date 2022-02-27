@@ -1,0 +1,57 @@
+#!/bin/bash
+
+declare -A emoji
+# for x in smiley sweatsmile angel haha bomb confuse like ohh bad mindblown mind tomato gift party1 party2 right wrong exclaimation question block flag joker night blub lol1 lol2; do echo "$x"; done 
+emoji[smile]=🙂
+emoji[smiley]=🙂
+emoji[sweatsmile]=😅
+emoji[angel]=😇
+emoji[haha]=😆
+emoji[bomb]=💣
+emoji[confuse]=💫
+emoji[like]=👍
+emoji[ohh]=😮
+emoji[bad]=😕
+emoji[mindblown]=🤯
+emoji[mind]=🧠
+emoji[tomato]=🍅
+emoji[gift]=🎁
+emoji[party1]=🎉
+emoji[party2]=🎊
+emoji[right]=✅
+emoji[wrong]=❌
+emoji[exclaim]=❗
+emoji[question]=❓
+emoji[block]=⛔
+emoji[flag]=🚩
+emoji[joker]=🃏
+emoji[night]=🌃
+emoji[bulb]=💡
+emoji[lol1]=😂
+emoji[lol2]=🤣
+emoji[fp]=🤦
+emoji[apple]=🍎
+
+toemoji() {
+  local in=/dev/stdin
+  local out=/dev/stdout
+  local file="$1"
+  if [[ -n $file ]];then
+    in="$file"
+    out="$(mktemp)"
+  fi
+  IFS=$'\n'
+  while read -r line; do 
+    for k in ${!emoji[@]}; do 
+      line=${line//:$k:/${emoji[$k]}}
+    done
+    echo "$line" >> $out
+  done < "$in"
+  if [[ -n $file ]]; then
+    cp "$out" "$file"
+    rm "$out"
+  fi
+}
+
+toemoji "$@"
+
