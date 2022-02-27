@@ -1,0 +1,21 @@
+#!/bin/bash
+
+[[ -z $SNIPPETS ]] && echo "SNIPPETS Directory Not Defined." && exit 1
+
+snipper(){
+  local name="$1"
+  shift
+  local path="$SNIPPETS/$name"
+  if [[ -r $path ]]; then 
+    local buf="$(<$path)"
+    # -i makes n an integer check help declare for more info 
+    local -i n=1           
+    for arg in "$@"; do 
+      buf=${buf//\{$n\}/$arg}
+      ((n++))
+    done
+    echo "$buf"
+  fi 
+}
+
+snipper "$@"
