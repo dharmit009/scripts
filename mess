@@ -11,10 +11,10 @@ SIGINT SIGTERM" SIGTERM SIGINT
 if [ -z "${message}" ];
 then
 	read -p "Message: " message;
-fi 
+fi
 
 while true;
-do 
+do
 	clear
 	# -c sets the text to center ...
 	# -f font file ... (only.flf you can find it on /usr/share/figlet/fonts)
