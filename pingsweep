@@ -1,0 +1,23 @@
+#!/bin/sh
+
+set -e
+
+ranger(){
+    for x in {1..255};
+    do
+        ping -c 1 $ip.$x | grep "64 bytes" | cut -d " " -f 4 | tr -d ":" &
+    done
+}
+
+if [ -z "$1" ]
+then
+    echo "Enter ip address: "
+    read ip
+    ranger
+elif [ -n "$1" ]
+then
+    ip="$1"
+    ranger
+else
+    echo "Error [E] !!";
+fi

@@ -1,66 +1,67 @@
-#!/bin/bash 
+#!/bin/bash
 open(){
 	xdg-open "$url" >/dev/null </dev/null >/dev/null 2>&1 & disown
 }
 
 
 # declaring a associative array ...
-declare -A classNames; 
-classNames[dbms]="btjeomuvaq"; 
-classNames[java]="mvb-gqqp-pxj"; 
-classNames[cnet]="rpd-uprx-oyh"; 
-classNames[game]="hdp-dcty-ijz"; 
-classNames[inso]="fbx-vebp-sof"; 
+declare -A classNames;
+classNames[dbms]="btjeomuvaq";
+classNames[java]="mvb-gqqp-pxj";
+classNames[cnet]="rpd-uprx-oyh";
+classNames[game]="hdp-dcty-ijz";
+classNames[inso]="fbx-vebp-sof";
 
 # debugging block
 # echo ${classNames[dbms]}
 
-# Creating variables for base url ... 
+# Creating variables for base url ...
 base_url="https://meet.google.com/lookup/";
 extend_url="?authuser=1&hs=179";
 
 # If no sys arguments then ask for meet code ...
-if [ -z "$1" ]; 
-then 
-	read -p -r "Enter Meeting Code: " code; 
+if [ -z "$1" ];
+then
+	read -p -r "Enter Meeting Code: " code;
 	url=$base_url$code$extend_url;
 
 # If sys argument == python then go to classroom one exception ...
 elif [ "$1" == "git" ];
-then 
+then
 	url="https://github.com/"
 elif [ "$1" == "python" ];
-then 
+then
 	url="https://classroom.google.com/u/0/c/MzY0NjA0NzUyMzgx"
-	
+
 elif [ "$1" == "rwxrob" ];
-then 
+then
 	url="https://www.twitch.tv/rwxrob"
-	
+
 elif [ "$1" == "rwxzet" ];
-then 
+then
 	url="https://www.github.com/rwxrob/zet"
-	
+
 elif [ "$1" == "rwxgit" ];
-then 
+then
 	url="https://www.github.com/rwxrob"
 
 elif [ "$1" == "keybr" ];
-then 
+then
 	url="https://www.keybr.com"
-	
+
 elif [ "$1" == "whatsapp" ];
-then 
-	url="https://web.whatsapp.com"
-# If any arg one present in classNames array then look for it's value 
-elif [ ${classNames[$1]}+_ ]; 
-then 
-	code=${classNames["$1"]}; 
+then
+	# url="https://web.whatsapp.com"
+    url="NOT ALLOWED TILL APR 6th"
+# If any arg one present in classNames array then look for it's value
+elif [ ${classNames[$1]}+_ ];
+then
+	code=${classNames["$1"]};
 	url="$base_url$code$extend_url";
 
 else
 	$url="$base_url";
-fi 
+fi
 
 # Open the url ...
 open

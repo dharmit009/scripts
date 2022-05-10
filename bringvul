@@ -1,0 +1,14 @@
+#!/bin/sh
+
+baseurl="https://www.exploit-db.com/download/"
+
+if [ -z "$1" ];
+then
+    echo "Invalid Choice !!"
+elif [ -n "$1" ];
+then
+    `wget $baseurl$1`
+else
+    echo "Error !!"
+fi
+

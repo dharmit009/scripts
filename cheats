@@ -23,10 +23,24 @@ args(){
   `$#` --> Returns the count of arguments. '
   echo ""
 }
+nmap(){
+    echo '
+    nmap -sn 192.168.29.1-255 --> Ping Scan (disable port scan);
+    '
+    echo ""
+
+}
+
+hack(){
+    nmap
+    ports
+}
+
 all(){
   format
   args
-  ports
+  regex
+  hack
 }
 
 regex(){
@@ -59,8 +73,12 @@ echo '
   * `\s`      --> Used to represent whitespace or space.
   * `\S`      --> Used to represent non-whitespace or space.
 '
+echo ""
+
 }
 
+
+echo "Dollar 1: $1"
 
 if [[ "$1" = "ports" ]]
 then
@@ -71,9 +89,15 @@ then
 elif [[ "$1" = "args" ]]
 then
   args
+elif [[ "$1" = "hack" ]]
+then
+  hack
 elif [[ "$1" = "regex" ]]
 then
   regex
+elif [[ "$1" = "nmap" ]]
+then
+  nmap
 else [[ -z "$1" ]]
   all
 fi

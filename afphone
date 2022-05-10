@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# audio from phone ...
+
+exec '/home/hmm/Applications/Audiorelay/bin/AudioRelay'
+

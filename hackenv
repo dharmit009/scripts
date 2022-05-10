@@ -1,0 +1,20 @@
+#!/bin/sh
+
+set -e
+
+echo "Welcome to Hack Env !!"
+
+if [ -z "$1" ]
+then
+    echo "Enter a IP Address: "
+    read ip
+else
+    ip="$1"
+fi
+
+export -p IP="$ip"
+export -p URL="http://$ip:80/FUZZ/"
+
+echo $IP;
+echo $URL;
+

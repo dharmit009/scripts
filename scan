@@ -1,0 +1,10 @@
+#!/bin/sh
+mymasscan(){
+    masscan -p 0-65535 $(cat ip) --rate 100000 --wait 5 --open-only --seed
+}
+
+myscan(){
+    nmap -T4 -sV -A -p- $(cat ip) >> nmap-scan.md | tee
+}
+
+myscan

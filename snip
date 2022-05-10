@@ -1,11 +1,11 @@
 #!/bin/bash
 
-[[ -z $SNIPPETS ]] && echo "SNIPPETS Directory Not Defined." && exit 1
+[[ -z $SNIPS ]] && echo "SNIPPETS Directory Not Defined." && exit 1
 
 snipper(){
   local name="$1"
   shift
-  local path="$SNIPPETS/$name"
+  local path="$SNIPS/$name"
   if [[ -r $path ]]; then
     local buf="$(<$path)"
     # -i makes n an integer check help declare for more info
