@@ -1,0 +1,9 @@
+#!/bin/sh
+
+FILENAME='executable'
+find / -type f -mount -executable 2>/dev/null | tee executable | less
+
+if [ -e "$FILENAME" ];
+then
+    rm -rf executable
+fi

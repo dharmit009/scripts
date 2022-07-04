@@ -1,7 +1,7 @@
 #!/bin/bash
 
 declare -A emoji
-# for x in smiley sweatsmile angel haha bomb confuse like ohh bad mindblown mind tomato gift party1 party2 right wrong exclaimation question block flag joker night blub lol1 lol2; do echo "$x"; done 
+# for x in smiley sweatsmile angel haha bomb confuse like ohh bad # mindblown mind tomato gift party1 party2 right wrong exclaimation # question block flag joker night blub lol1 lol2 warn; do echo "$x"; done 
 emoji[smile]=🙂
 emoji[smiley]=🙂
 emoji[sweatsmile]=😅
@@ -31,6 +31,7 @@ emoji[lol1]=😂
 emoji[lol2]=🤣
 emoji[fp]=🤦
 emoji[apple]=🍎
+emoji[warn]=⚠️
 
 toemoji() {
   local in=/dev/stdin
@@ -41,8 +42,8 @@ toemoji() {
     out="$(mktemp)"
   fi
   IFS=$'\n'
-  while read -r line; do 
-    for k in ${!emoji[@]}; do 
+  while read -r line; do
+    for k in ${!emoji[@]}; do
       line=${line//:$k:/${emoji[$k]}}
     done
     echo "$line" >> $out

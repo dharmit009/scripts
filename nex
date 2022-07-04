@@ -26,8 +26,8 @@ checkifnotcreate(){
 			# & enter #!/bin/bash
 			# also open it in vim on line 3.
 			chmod +x "$fn"
-			echo -e "#!/bin/sh\n\n" >> "$fn"
-			$EDITOR +3 $fn
+			echo "#!/bin/sh\n\nset -x\n\n" >> "$fn"
+			$EDITOR +5 $fn
 		fi
 	fi
 }

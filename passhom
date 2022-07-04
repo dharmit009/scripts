@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# The script is suppose to cat /etc/passwd for the all the loggable users on
+# The script will also concatinate all the users stored in /home.
+
+echo "Available Users: "
+ls /home
+
+echo "\nPassword Hash: "
+cat /etc/passwd | grep bash
+echo ""
+

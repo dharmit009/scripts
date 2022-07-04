@@ -1,7 +1,7 @@
 #!/bin/sh
 
-echo $(date)
-ttfile=~/repos/TODO/timetable.md
+ttfile=~/repos/todo/timetable.md
+
 
 if [[ "$1" == "edit" ]];
 then
