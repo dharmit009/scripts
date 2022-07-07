@@ -2,5 +2,5 @@
 
 # audio from phone ...
 
-exec "/home/hmm009/Application/Audiorelay/bin/AudioRelay" --minimized 2&>/dev/null
+exec "/home/hmm009/Application/Audiorelay/bin/AudioRelay" --minimized > /dev/null 2>&1
 

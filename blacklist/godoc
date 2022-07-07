@@ -1,0 +1,4 @@
+#!/bin/sh
+
+url="https://pkg.go.dev/search?q="
+xdg-open "$url$@" >/dev/null 2>&1 & disown
