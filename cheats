@@ -1,10 +1,8 @@
 #!/bin/sh
 
-networking{
-    ip route add 192.168.222.0/24 via 10.175.34.1 dev eth1
-
+networking(){
+    echo "ip route add 192.168.222.0/24 via 10.175.34.1 dev eth1"
 }
-
 ports(){
   echo ""
   echo "  ssh "
@@ -47,7 +45,6 @@ all(){
   regex
   hack
 }
-
 regex(){
 echo '
 
@@ -82,13 +79,10 @@ echo ""
 
 }
 
-
-echo "Dollar 1: $1"
-
-if [[ "$1" = "ports" ]]
+if [[ "$1" = "ports" ]];
 then
   ports
-elif [[ "$1" = "format" ]]
+elif [[ "$1" = "format" ]];
 then
   format
 elif [[ "$1" = "args" ]]

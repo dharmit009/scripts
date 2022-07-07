@@ -1,5 +1,139 @@
-#!/bin/sh
+#!/bin/python3
+import sys
 
-set -e
+global bold, normal
+bold   = "\033[1m"
+normal = "\033[0m"
 
-echo "CIDR - Classless Inter Domain Routing"
+def help():
+  print(f"""{bold}NAME {normal}
+    nest - a tool to calculate ip range using CIDR Notation"
+
+{bold}SYNOPSIS {normal}
+    {bold}nest [ip range]/[CIDR MASK]
+    nest 127.0.0.1/24{normal}
+
+{bold}DESCRIPTION {normal}
+    nest is simple tool made using python3 to calculate the start and
+    the end ip of an ip address from it's CIDR notation. Apart from the
+    start and the end range it also {bold}tries{normal} to calculate the
+    number of host the network can hold.
+    """);
+
+
+def formatter(ip, host_bits, netk_bits, total_hosts, octets, data):
+    print(f"{bold}CIDR Notation:{normal} {data[0]} / {host_bits}");
+    print(f"{bold}IP Address   :{normal}", data[0]);
+    print(f"{bold}Host Bits    :{normal}", host_bits);
+    print(f"{bold}Network Bits :{normal}", netk_bits);
+    print(f"{bold}No. Of Host  :{normal}", total_hosts);
+    print(f"{bold}Octets       :{normal}", octets);
+
+
+def andint(binaries, netBin):
+    print("Binaries: ", binaries)
+    print("NetBin: ", netBin);
+    if len(binaries) == 1:
+        out = int(binaries[0], 2) & int(netBin, 2);
+        print("Output: ", out);
+
+
+
+def checkSlash(ip):
+    if "/" in ip:
+        return True;
+    else:
+        print(f"""{bold}Error:{normal} Please follow proper CIDR Notation with {bold}'/'
+
+Here is an example:{normal}
+nest 127.0.0.1/24""");
+
+
+def bitCheck(host_bits):
+    if host_bits <= 32:
+        return True;
+    else:
+        print(f"{bold}A Network of /{host_bits} cannot exist!!{normal}");
+        return False;
+
+
+def genNetbin(octets, netk_bits, binaries):
+    netBin = list()
+    one_octet = 8
+    host_bits = one_octet - netk_bits
+
+    if isinstance(octets, int):
+        test = ""
+        for x in range(host_bits):
+            test+="1"
+        for x in range(netk_bits):
+            test+="0"
+        netBin = bin(int(test,2));
+    else:
+        for x in octets:
+            test = ""
+            for x in range(host_bits):
+                test+="1"
+            for x in range(netk_bits):
+                test+="0"
+            oneBin = bin(int(test,2));
+        netBin.append(oneBin);
+    # print(f"{bold}Netbinaries Per Octet: {normal}", netBin);
+    andint(binaries, netBin);
+
+
+def magist(octets, netk_bits):
+    binaries = []
+    if isinstance(octets, str):
+        octets=int(octets);
+        binaries.append(bin(octets));
+    else:
+        for x in octets:
+            x=int(x);
+            binaries.append(bin(x));
+    # print("Binaries: ", binaries);
+    genNetbin(octets, netk_bits, binaries)
+
+
+
+def bitChange(host_bits, netk_bits, octets):
+    # first we will need to see the networkbits
+    if 0 <= netk_bits <= 8:
+        magist(octets[-1], netk_bits);
+    elif 9 <= netk_bits <= 16:
+        magist(octets[-2:], netk_bits);
+    elif 17 <= netk_bits <= 24:
+        magist(octets[-3:], netk_bits);
+    elif 25 <= netk_bits <=32:
+        magist(octets[:], netk_bits);
+    else:
+        print("{bold}Error: {normal}Something went wrong!");
+
+
+def doCalc(ip):
+    total_bits = 32;
+    if checkSlash(ip):
+        data=ip.split("/")
+        host_bits = int(data[1])
+        if bitCheck(host_bits):
+            netk_bits = total_bits - host_bits
+            total_hosts = 2**(netk_bits)
+            octets = data[0].split(".");
+            bitChange(host_bits, netk_bits, octets);
+            formatter(ip, host_bits, netk_bits, total_hosts, octets, data)
+
+
+def getData():
+    if len(sys.argv) == 1:
+        return help();
+    else:
+        data = sys.argv[1]
+        return doCalc(data);
+
+
+def main():
+    getData();
+
+
+if __name__ == "__main__":
+    main();
