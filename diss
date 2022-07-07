@@ -1,0 +1,14 @@
+#!/bin/sh
+
+set -e
+
+echo "This command is going to work in set of diss and enab.\n"
+
+echo "This command is supppose to disable any command of unix operating system."
+echo "One of the key things to keep in mind is that this won't allow to disable the diss and enab command by default."
+
+echo "\nWhy do you want to do this?"
+echo""
+echo "> To force myself to use find command instead of locate."
+echo "> Or to force myself from updating system every single day ... & during every session."
+echo "> To force myself to use *vi* instead of vim"

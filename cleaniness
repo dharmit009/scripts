@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -x
+
+extensions=[]
+
+for x in extensions;
+do
+    echo "Do something ..."
+done

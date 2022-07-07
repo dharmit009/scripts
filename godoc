@@ -1,9 +1,0 @@
-#!/bin/sh
-
-open(){
-	xdg-open "$url$@" >/dev/null </dev/null >/dev/null 2>&1 & disown
-}
-
-url="https://pkg.go.dev/"
-url+="$@"
-open
