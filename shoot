@@ -1,0 +1,23 @@
+#!/bin/sh
+
+set -e
+
+bold="\033[1m"
+normal="\033[0m"
+
+help(){
+    mess=""$bold"NAME $normal
+    "$bold"shoot - a tool to take screenshoot and format in markdown
+
+"$bold"SYNOPSIS"$normal"
+    "$bold"shoot
+    shoot"$normal" --help
+
+"$bold"DESCRIPTION "$normal"
+    I have created this tool to take screenshoot (😅) and 
+    format the output in markdown format.
+"
+    echo "$mess"
+}
+
+help
