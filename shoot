@@ -5,6 +5,7 @@ set -e
 bold="\033[1m"
 normal="\033[0m"
 
+
 help(){
     mess=""$bold"NAME $normal
     "$bold"shoot - a tool to take screenshoot and format in markdown
@@ -14,10 +15,41 @@ help(){
     shoot"$normal" --help
 
 "$bold"DESCRIPTION "$normal"
-    I have created this tool to take screenshoot (😅) and 
+    I have created this tool to take screenshoot (😅) and
     format the output in markdown format.
 "
     echo "$mess"
 }
 
-help
+syscheck(){
+    if [ -z "$(which gnome-screenshot)" ];
+    then
+        echo "Please, run sudo apt install gnome-screenshot"
+    fi
+}
+
+imgcheck(){
+    echo "$PWD"
+    if [ ! -d ./img ];
+    then
+        mkdir -p ./img
+    fi
+}
+
+syscheck
+if [ "$1" = "--help" ];
+then
+    help
+elif [ -n "$1" ];
+then
+    gnome-screenshot --area --delay 3 -f "$PWD/$1.png"
+else
+    imgcheck
+    isosec=`exec date -u +%Y%m%d%H%M%S "$@"`
+    echo "Isosec: "$isosec""
+    sleep 4
+    gnome-screenshot --area --file "$PWD/img/$isosec.png"
+    # echo "take screenshot & save to present working dir"
+    # echo "then insert it into vim buffer with markdown format"
+fi
+
