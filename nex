@@ -5,12 +5,20 @@ PWD=~/repos/scripts/;
 
 # Create Script if does not exist ...
 # And open within vim ... else open the script with dailog ...
+breaker(){
+    echo 'Check if the current user is root'
+    echo 'if it is root break do not allow to create the
+    script'
+    echo 'Creating script with root and providing
+    misconfigured privileges results to security risk.'
+}
 checkifnotcreate(){
 	# check if the script exist
 	if [ -e "$fn" ];
 	then
 		echo "$fn script already exists !!";
-		read -p "Would you like to edit the script [y/n]: " ans;
+		# read -p "Would you like to edit the script [y/n]: " ans;
+        ans='y' # tired of typing y everytime 😆
 		if [ "$ans" = 'y' ];
 		then
 			$EDITOR $fn

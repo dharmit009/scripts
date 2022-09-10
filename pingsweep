@@ -5,8 +5,8 @@ set -e
 ranger(){
     for x in $(seq 0 255);
     do
-#         echo "ping -c 1 $ip.$x | grep "64 bytes" | cut -d " " -f 4 | tr -d ":" &"
-        ping -c 1 $ip.$x
+#          echo "ping -c 1 $ip.$x | grep "64 bytes" | cut -d " " -f 4 | tr -d ":" &"
+        ping -c 1 $ip.$x | grep "64 bytes" | cut -d " " -f 4 | tr -d ":" &
     done
 }
 

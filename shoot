@@ -53,7 +53,7 @@ then
     help
 elif [ -n "$1" ];
 then
-    flameshot --area --delay 2 -f "$PWD/$1.png"
+    flameshot gui --delay 3500 --path "$PWD/$1.png" >/dev/null 2>&1
 else
     imgcheck
     isosec=`exec date -u +%Y%m%d%H%M%S "$@"`
@@ -61,5 +61,4 @@ else
     flameshot gui --delay 3500 --path "$PWD/img/$isosec.png" >/dev/null 2>&1
     formatmd
 fi
-
 

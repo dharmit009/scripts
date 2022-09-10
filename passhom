@@ -3,10 +3,13 @@
 # The script is suppose to cat /etc/passwd for the all the loggable users on
 # The script will also concatinate all the users stored in /home.
 
-echo "Available Users: "
+bold="\033[1m"
+normal="\033[0m"
+
+echo "$bold""Available Users: "$normal""
 ls /home
 
-echo "\nPassword Hash: "
+echo "\n"$bold"Password Hash: "$normal""
 cat /etc/passwd | grep bash
 echo ""
 

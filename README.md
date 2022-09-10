@@ -1,6 +1,7 @@
 # Scripts
 
-> :warning: Warning: I am new to bash scripting and programming in general so use this scripts at your own risk.
+> ⚠️ Warning: I am new to bash scripting and programming in general so use this scripts at your own risk.
+> 💡 This scripts may contain some dependencies it's up to you to figure out those stuff.
 
 | **Script Name** | **Description**                                                          |
 |-----------------|--------------------------------------------------------------------------|

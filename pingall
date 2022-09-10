@@ -1,0 +1,24 @@
+#!/bin/sh
+
+set -e
+
+ranger(){
+    for x in $(seq 0 255);
+    do
+		for y in $(seq 0 255);
+		do
+			for z in $(seq 0 255);
+			do
+				for w in $(seq 0 255);
+				do
+					# echo "ping -c 1 $ip.$x | grep "64 bytes" | cut -d " " -f 4 | tr -d ":" &"
+					ping -c 1 $x.$y.$z.$w| grep "64 bytes" | cut -d " " -f 4 | tr -d ":" &
+				done
+				sleep 1
+			done 
+				sleep 1
+		done 
+	done
+}
+
+ranger

@@ -2,19 +2,22 @@
 
 set -e
 
-echo "Welcome to Hack Env !!"
+bold="\033[1m"
+normal="\033[0m"
 
 if [ -z "$1" ]
 then
-    echo "Enter a IP Address: "
+    echo -n ""$bold"Enter a IP Address: "$normal""
     read ip
+	echo "$ip";
 else
     ip="$1"
+	echo "$ip";
 fi
 
-export -p IP="$ip"
-export -p URL="http://$ip:80/FUZZ/"
+url="http://$ip:80/FUZZ/"
+echo $url
+export -p $IP="$ip"
+export -p $URL="$url"
 
-echo $IP;
-echo $URL;
 

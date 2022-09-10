@@ -12,3 +12,8 @@ echo""
 echo "> To force myself to use find command instead of locate."
 echo "> Or to force myself from updating system every single day ... & during every session."
 echo "> To force myself to use *vi* instead of vim"
+
+echo ""
+echo "Another useful thing would be: "
+echo "I would be able to disable any command in particular on the target system which could be quite useful."
+echo "The closest thing I found to this was setting up firewalls."

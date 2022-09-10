@@ -1,0 +1,7 @@
+#!/bin/sh
+
+set -e
+
+# The script uses nmap pings and return hosts ips which are available.
+
+# nmap -sn $1 -oN normal.txt | cat normal.txt | grep "Nmap scan" | cut -d " " -f 5

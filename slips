@@ -1,5 +1,15 @@
 #!/bin/sh
+set -e
 
+fs(){
+	echo "/bin - basic programs (Is, cd, cat, etc.)"
+	echo "/sbin- system programs (fdisk, mkfs, sysctl, etc)"
+	echo "/etc - configuration flies"
+	echo "/tmp- temporary files (typically deleted on boot)"
+	echo "/usr/bin - applications (apt, neat, nmap, etc.)"
+	echo "/usr/share- application support and data files"
+	echo ""
+}
 networking(){
     echo "ip route add 192.168.222.0/24 via 10.175.34.1 dev eth1"
 }
@@ -33,15 +43,22 @@ nmap(){
     echo ""
 
 }
-
+hydra(){
+echo '
+	hydra -L {List Of Usernames} -P { List Of Passwds } $ip protocol
+	'
+}
+ftp(){
+echo '
+	ftp $ip
+	'
+}
 hack(){
     nmap
     ports
 }
-
 all(){
   format
-  args
   regex
   hack
 }
@@ -79,25 +96,34 @@ echo ""
 
 }
 
-if [[ "$1" = "ports" ]];
+if [ "$1" = "ports" ];
 then
   ports
-elif [[ "$1" = "format" ]];
+elif [ "$1" = "format" ];
 then
   format
-elif [[ "$1" = "args" ]]
+elif [ "$1" = "args" ]
 then
   args
-elif [[ "$1" = "hack" ]]
+elif [ "$1" = "hack" ]
 then
   hack
-elif [[ "$1" = "regex" ]]
+elif [ "$1" = "regex" ]
 then
   regex
-elif [[ "$1" = "nmap" ]]
+elif [ "$1" = "nmap" ]
 then
   nmap
-else [[ -z "$1" ]]
+elif [ "$1" = "networking" ];
+then
+  networking
+elif [ "$1" = "fs" ];
+then
+  fs
+elif [ "$1" = "hydra" ];
+then
+  hydra 
+else [ -z "$1" ]
   all
 fi
 

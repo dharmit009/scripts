@@ -23,11 +23,11 @@ def help():
 
 def formatter(ip, host_bits, netk_bits, total_hosts, octets, data):
     print(f"{bold}CIDR Notation:{normal} {data[0]} / {host_bits}");
-    print(f"{bold}IP Address   :{normal}", data[0]);
+    # print(f"{bold}IP Address   :{normal}", data[0]);
     print(f"{bold}Host Bits    :{normal}", host_bits);
     print(f"{bold}Network Bits :{normal}", netk_bits);
     print(f"{bold}No. Of Host  :{normal}", total_hosts);
-    print(f"{bold}Octets       :{normal}", octets);
+    # print(f"{bold}Octets       :{normal}", octets);
 
 
 def andint(binaries, netBin):
@@ -35,8 +35,7 @@ def andint(binaries, netBin):
     print("NetBin: ", netBin);
     if len(binaries) == 1:
         out = int(binaries[0], 2) & int(netBin, 2);
-        print("Output: ", out);
-
+        print(f"{bold}Start IP:{normal} ", out);
 
 
 def checkSlash(ip):
