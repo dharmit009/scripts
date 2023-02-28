@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -e
+
+# seten - stands for set environment
+
+sudo apt install git build-essential dkms
+git clone https://github.com/aircrack-ng/rtl8188eus.git
+cd rtl8188eus
+sudo ./dkms-install.sh

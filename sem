@@ -1,0 +1,7 @@
+#!/bin/sh
+
+set -e
+
+# sem - show empty files
+
+find . -type f -empty -print | tr './' ' ' | xargs

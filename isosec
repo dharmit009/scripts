@@ -1,4 +1,13 @@
 #!/bin/sh
 set -e
 
-exec date -u +%Y%m%d%H%M%S "$@"
+exec date +%Y%m%d%H%M%S "$@"
+
+# -u - uses UTC time
+#
+# %Y - year
+# %m - month
+# %d - day
+# %H - hour
+# %M - Minute
+# %S - Seconds

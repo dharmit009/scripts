@@ -7,7 +7,7 @@ normal = "\033[0m"
 
 def help():
   print(f"""{bold}NAME {normal}
-    nest - a tool to calculate ip range using CIDR Notation"
+    nest - A tool to calculate ip range using CIDR Notation.
 
 {bold}SYNOPSIS {normal}
     {bold}nest [ip range]/[CIDR MASK]

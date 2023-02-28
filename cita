@@ -1,0 +1,122 @@
+#!/bin/bash
+
+set -e
+
+bold=$(tput bold)
+normal=$(tput sgr0)
+
+########## Configuration Section Starts Here ... #########
+
+# qhome is var for setting your quotes directory from where
+# it will randomly pick a quote.
+
+qhome="$HOME/repos/quotes/data/"
+
+# template this is used to format the quote file when printing
+# on CLI you can change this file and create beautiful
+# interfaces.
+
+template="$HOME/repos/quotes/template"
+
+########## Configuration section ends here ... ###########
+
+
+## Program Variable's ##
+
+# qnum is var which represents the current number of quotes
+# present in qhome.
+
+qnum=$(ls $qhome/*.md | cut -d '/' -f 7 | wc -l)
+
+
+conf(){
+    echo $bold"### Current Configuration ###"
+    echo ""
+    echo $bold"Formatting File: " $normal $template
+    echo $bold"Quote's Data Folder: " $normal $qhome
+    echo $bold"Total Number of Quote's: " $normal $qnum
+    echo ""
+}
+
+
+helper(){
+
+mess=""$bold"NAME $normal
+    "$bold"cita - A custom tool to manage quotes.
+
+"$bold"SYNOPSIS"$normal"
+    cita "$normal"<option>
+
+"$bold"OPTIONS "$normal"
+    cita add    - Used to add quote to the quotes data folder.
+    cita conf   - Show Current Configuration.
+    cita count  - Displays the total number of quotes available in the library.
+    cita help   - Displays this help message.
+    cita random - Randomly selects and pring a quote from the quotes library.
+    cita empty  - shows empty quote files.
+
+"$bold"DESCRIPTION "$normal"
+    cita stands for citations. This is a custom tool to
+    manage quotes which you like simply create a folder names
+    quotes/data and point the configuration section of the
+    script to the that directory. After that you can use all
+    the functionality of cita.
+
+"$bold"DEPENDENCIES "$normal"
+    "$bold"isosec "$normal"- if you dont have one simply create a script with
+    following contents and to the path:
+
+    "$bold"exec date +%Y%m%d%H%M%S '\$@'
+
+"
+    echo "$mess"
+}
+
+add(){
+    echo "This functions will add a quote to the quote directory"
+    filepath=$(isosec)
+    filename="$qhome$filepath"".md"
+    if [ -e "$filename" ];
+    then
+        echo "$filename already exists !!"
+    else
+            echo -e "\n## Quote No: $( echo $qnum + 1 | bc )\n\n" >> "$filename"
+            echo "$EDITOR"
+            $EDITOR +4 "$filename"
+    fi
+    echo "$filename"
+}
+
+count(){
+    echo -n "Number of quotes available: "
+    echo "$qnum"
+}
+
+random(){
+    echo ""
+    ran=$(ls $qhome/*.md | sort --random-sort | head -n 1)
+    paste $template $ran
+    echo ""
+}
+
+empty(){
+    echo "Used to show empty quote files"
+    find $qhome -type f -empty -print
+}
+
+
+for x in empty random count add helper conf
+do
+
+    if [ -z "$1" ];
+    then
+        random
+        exit
+    else
+        if [ "$1" = "$x" ];
+        then
+            "$x"
+        fi
+    fi
+done
+

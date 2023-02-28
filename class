@@ -11,6 +11,7 @@ classNames[java]="mvb-gqqp-pxj";
 classNames[cnet]="rpd-uprx-oyh";
 classNames[game]="hdp-dcty-ijz";
 classNames[inso]="fbx-vebp-sof";
+classNames[monk]="www.monkeytype.com";
 
 # debugging block
 # echo ${classNames[dbms]}

@@ -1,0 +1,5 @@
+#!/bin/sh
+
+set -e
+
+"Funex - this will a script to extract functions names from any given script"

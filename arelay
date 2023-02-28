@@ -1,0 +1,5 @@
+#!/bin/sh
+
+set -e
+
+exec ~/Apps/compressed/audiorelay/bin/AudioRelay -minimized
