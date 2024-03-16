@@ -1,0 +1,5 @@
+#!/bin/sh
+
+set -e
+
+golang-petname --words 1

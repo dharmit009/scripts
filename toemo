@@ -32,6 +32,8 @@ emoji[lol2]=🤣
 emoji[fp]=🤦
 emoji[apple]=🍎
 emoji[warn]=⚠️
+emoji[up]=👆🔼
+emoji[down]=👇🔽
 
 toemoji() {
   local in=/dev/stdin

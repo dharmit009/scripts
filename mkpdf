@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -e
+
+pandoc -f markdown -t pdf -s -o ~/Documents/"$1".pdf ./*.md \
+    --pdf-engine=xelatex \
+    -V linkcolor:blue \
+    -V geometry:a4paper \
+    -V geometry:margin=2cm \
+    -V mainFont:"DejaVu Serif"\
+    -V monofont:"DejaVu Sans Mono"\
+

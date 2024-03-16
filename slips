@@ -1,6 +1,32 @@
 #!/bin/sh
 set -e
 
+gfu(){
+echo "
+Examples of google fu:
+- site:clientWeb filetype:pdf
+- site:clientWeb intitle:"index of"
+- site:clientWeb intitle:"index of" "parent directory"
+- site:clientWeb intitle:"index of" "parent directory" "last modified"
+- site:clientWeb intitle:"index of" "parent directory" "last modified" description size (mp3|wma|ogg) "eminem"
+- site:clientWeb intitle:"index of" "parent directory" "last modified" description size (mp3|wma|ogg) "eminem" -html -htm -php -asp -jsp
+"
+echo ""
+}
+
+whatweb(){
+echo "
+- whatweb
+examples of whatweb:
+- whatweb clientWeb
+- whatweb clientWeb -v
+- whatweb clientWeb -v -a 3
+- whatweb clientWeb -v -a 3 -t 10
+- whatweb clientWeb -v -a 3 -t 10 -U
+- whatweb clientWeb -v -a 3 -t 10 -U -R
+"
+echo ""
+}
 fs(){
 	echo "/bin - basic programs (Is, cd, cat, etc.)"
 	echo "/sbin- system programs (fdisk, mkfs, sysctl, etc)"
@@ -122,7 +148,13 @@ then
   fs
 elif [ "$1" = "hydra" ];
 then
-  hydra 
+  hydra
+elif [ "$1" = "whatweb" ];
+then
+  whatweb
+elif [ "$1" = "gfu" ];
+then
+  gfu
 else [ -z "$1" ]
   all
 fi
