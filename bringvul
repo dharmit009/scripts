@@ -1,13 +1,43 @@
-#!/bin/sh
+#!/bin/bash
 
 baseurl="https://www.exploit-db.com/download/"
 
-if [ -z "$1" ];
+bold=$(tput bold)
+normal=$(tput sgr0)
+
+helper(){
+
+    mess=""$bold"NAME"$normal"
+    "$bold"bringvul - Downloads vulnerability from exploitdb using id
+
+    "$bold"SYNOPSIS"$normal"
+    bringvul <exploitID>
+
+    "$bold"OPTIONS"$normal"
+    bringvul help        - Displays this help message.
+    bringvul <exploitID> - Downloads vulnerability using exploitdb ID.
+
+    "$bold"DEPENDENCIES"$normal"
+    wget - Wget is used to download the vulnerability directly from exploitdb database.
+
+    "
+
+    echo "$mess"
+}
+
+
+if [ "$1" = "help" ];
+then
+    helper
+
+elif [ -z "$1" ];
 then
     echo "Invalid Choice !!"
+
 elif [ -n "$1" ];
 then
     `wget $baseurl$1`
+
 else
     echo "Error !!"
 fi

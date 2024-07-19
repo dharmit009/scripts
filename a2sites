@@ -2,5 +2,5 @@
 
 set -e
 
+# Apache2 available websites.
 ls /etc/apache2/sites-available
-
